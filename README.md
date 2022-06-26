@@ -15,8 +15,11 @@ Scraping Daily top 500 data from opensea to json
 
 
 
-Open ``config.py`` and add latest chrome driver path then just run ``run_all.py``
+Open ``config.py`` and add latest chrome driver ``path`` then just run ``run_all.py``
+
+
+
 
 ## __Note__
- For changing updates frequency just open ``run_all.py``, find code `` shcedule.every(24).hours.., and set up your time
-
+- For changing updates frequency just open ``run_all.py``, find code `` shcedule.every(24).hours.., and set up your time
+- Dont keep open output files! Always close them, for now get errors from script
