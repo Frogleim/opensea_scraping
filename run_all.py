@@ -24,3 +24,6 @@ if __name__ == '__main__':
 
     run_app()
     schedule.every(24).hours.do(run_app)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
