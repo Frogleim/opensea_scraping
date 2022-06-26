@@ -1,6 +1,6 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
-
+from config import PATH
 from selenium.webdriver.support.ui import WebDriverWait
 import time
 import pandas as pd
@@ -16,7 +16,7 @@ class AllTimeScraper:
 
         self.options.add_argument("--start-maximized")
         self.path = ChromeDriverManager().install()
-        self.driver = webdriver.Chrome(self.path, chrome_options=self.options)
+        self.driver = webdriver.Chrome(PATH, chrome_options=self.options)
         self.url = 'https://opensea.io/rankings?sortBy=total_volume'
         self.driver.get(self.url)
         self.df1 = None
