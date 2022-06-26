@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from bs4 import BeautifulSoup as BS
 import time
 import pandas as pd
+from config import PATH
 
 
 class DailyScraper:
@@ -16,7 +17,7 @@ class DailyScraper:
 
         self.options.add_argument("--start-maximized")
         self.path = ChromeDriverManager().install()
-        self.driver = webdriver.Chrome(self.path, chrome_options=self.options)
+        self.driver = webdriver.Chrome(PATH, chrome_options=self.options)
         self.url = 'https://opensea.io/rankings?sortBy=one_day_volume'
         self.driver.get(self.url)
         self.df1 = None
