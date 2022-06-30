@@ -62,12 +62,12 @@ class AllTimeScraper:
                     'one_day' : one_day,
                     'weekly' : weekly
                 }
-                print('Done!')
+                print(f'Got {name}')
                 AllTimeScraper.data_info.append(d)
 
 
                 if (screen_height) * i > scroll_height:
-                    el = self.driver.find_element_by_xpath('//*[@id="main"]/div/div[3]/button[2]').click()
+                    el = self.driver.find_element("xpath", '//*[@id="main"]/div/div[3]/button[2]').click()
                     time.sleep(7)
                     self.num = self.num + 1
                     self.scroll()
@@ -76,7 +76,6 @@ class AllTimeScraper:
                         break
 
     def main(self):
-
         screen_height = self.driver.execute_script("return window.screen.height;")  # get the screen height of the web
         self.df1 = pd.DataFrame(AllTimeScraper.data_info).drop_duplicates()
         i = 1
@@ -99,18 +98,18 @@ class AllTimeScraper:
             pic5 = None
 
             try:
-                owners = self.driver.find_element_by_xpath(
+                owners = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[4]/a/div/span[1]/div').text
-                floor_price = self.driver.find_element_by_xpath(
+                floor_price = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div').text
-                items = self.driver.find_element_by_xpath(
+                items = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[2]/a/div/span[1]/div').text
             except:
                 owners = 'None'
                 floor_price = 'None'
                 items = 'None'
             try:
-                el = self.driver.find_element_by_xpath(
+                el = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[3]/div/div/div[2]/div/div/div[1]/div/div[1]/a[1]').get_attribute(
                     'href')
             
@@ -118,21 +117,21 @@ class AllTimeScraper:
             except:
                 contractaddress = 'None'
             try:
-                img1 = self.driver.find_element_by_xpath('//*[@id="main"]/div/div/div[2]/div/div[1]/div/button/div/img')
+                img1 = self.driver.find_element("xpath", '//*[@id="main"]/div/div/div[2]/div/div[1]/div/button/div/img')
                 pic1 = img1.get_attribute('src')
             except:
                 pic1  = 'None'
             try:
-                img2 = self.driver.find_element_by_xpath(
+                img2 = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[3]/div[3]/div[3]/div[3]/div[2]/div/div/div[1]/div/article/a/div[1]/div/div/div/div/img')
                 pic2 = img2.get_attribute('src')
-                img3 = self.driver.find_element_by_xpath(
+                img3 = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[3]/div[3]/div[3]/div[3]/div[2]/div/div/div[2]/div/article/a/div[1]/div/div/div/div/img')
                 pic3 = img3.get_attribute('src')
-                img4 = self.driver.find_element_by_xpath(
+                img4 = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[3]/div[3]/div[3]/div[3]/div[2]/div/div/div[3]/div/article/a/div[1]/div/div/div/div/img')
                 pic4 = img4.get_attribute('src')
-                img5 = self.driver.find_element_by_xpath(
+                img5 = self.driver.find_element("xpath", 
                     '//*[@id="main"]/div/div/div[5]/div/div[3]/div[3]/div[3]/div[3]/div[2]/div/div/div[4]/div/article/a/div[1]/div/div/div/div/img')
                 pic5 = img5.get_attribute('src')
             except:
@@ -141,7 +140,7 @@ class AllTimeScraper:
                 pic4 = 'None'
                 pic5 = 'None'
             try:
-                if 'https://static.opensea.io/solana-just-s-symbol-colored.svg' in self.driver.find_element_by_xpath(
+                if 'https://static.opensea.io/solana-just-s-symbol-colored.svg' in self.driver.find_element("xpath", 
                         f'//*[@id="main"]/div/div/div[5]/div/div[1]/div/div[3]/div/div[6]/a/div/span[1]/div/div/button/div/img').get_attribute(
                         'src'):
 
@@ -162,7 +161,7 @@ class AllTimeScraper:
                 'pic4': pic4,
                 'pic5': pic5
             }
-            print('Done!!')
+            print(f'Got details of {contractaddress}')
             AllTimeScraper.data_2.append(main_d)
             
             if self.num_1 == len(self.df1['url'].values):
